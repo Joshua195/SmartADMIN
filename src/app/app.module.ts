@@ -31,6 +31,20 @@ import {ServicePaymentsService} from "../services/servicePayments";
 import {ServicesPage} from "../pages/services/services";
 import { ServicesApiProvider } from '../providers/services-api/services-api';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
+import { AngularFireDatabase, AngularFireDatabaseModule } from "angularfire2/database";
+import { LigthsProvider } from '../providers/ligths/ligths';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBe3wyrUzTphqwc4FfpaVmXeoPHVV4U8Vw",
+  authDomain: "smart-admin-8de18.firebaseapp.com",
+  databaseURL: "https://smart-admin-8de18.firebaseio.com",
+  projectId: "smart-admin-8de18",
+  storageBucket: "smart-admin-8de18.appspot.com",
+  messagingSenderId: "645481167613"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -53,7 +67,10 @@ import { ServicesApiProvider } from '../providers/services-api/services-api';
     HttpClientModule,
     IonicModule.forRoot(MyApp,{
       backButtonText: 'Atrás'
-    })
+    }),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -84,7 +101,10 @@ import { ServicesApiProvider } from '../providers/services-api/services-api';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProductsApiProvider,
     ServicePaymentsService,
-    ServicesApiProvider
+    ServicesApiProvider,
+    AngularFirestore,
+    AngularFireDatabase,
+    LigthsProvider
   ]
 })
 export class AppModule {}
